@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+         {% block content %}
+         {% with messages = get_flashed_messages() %}
+         {% if messages %}
+         <div class="alert alert-warning" >
+           <ul class=flashes>
+             {% for message in messages %}
+             <li>{{ message }}</li>
+             {% endfor %}
+           </ul>
+         </div>
+         {% endif %}
+         {% endwith %}
+
+      <form method="POST">
+        {{ form.csrf_token }}
+        <div class="page-header">
+          <h2>Categoria do chamado</h2>
+        </div>
+      <!-- <div style="height: 200px; width:400px;">
+
+        Usuário:
+        <p></p>
+        {{ form.category(placeholder = current_user.username, value = current_user.username) }}
+        <p></p> -->
+        Categoria:
+        <p></p>
+        {{ form.category }}
+        <p></p>
+		Sub-categoria:
+        <p></p>
+        {{ form.subcategory }}
+        <p></p>
+        Recompensa para o herói:
+        <p></p>
+        {{ form.reward }}
+        <p></p>
+        Descrição:
+        <p></p>
+        {{ form.obs }}
+		<button class="btn btn-sm btn-primary btn-block" type="submit">Abrir chamado</button>
+
+      <div class="page-header">
+
+      </div>
+      </div>
+          <p></p>
+
+    </form>
+{% endblock %}

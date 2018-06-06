@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Gerenciar usuários{% endblock %}
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-warning" >
+      <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+  {% for x in usr %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><b>Username:</b> {{ x.username }}
+        <p></p>
+        <form method="post">
+          <div class="hidden">
+          <br><b>ID:</b>
+          {{ df.id(placeholder = x.id, value = x.id) }}
+          </div>
+          <a href="delete"><button class="btn btn-xs btn-primary" type="submit">Delete</button></a>
+        </form>
+      </h3>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}

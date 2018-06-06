@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Mudar Senha{% endblock %}
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-warning" >
+      <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+
+  {% for x in user %}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <b>ID:</b> {{ x.id }}
+        <p></p>
+        <b>Username:</b> {{ x.username }}
+        <p></p>
+          <form method="POST">
+            {{ uf.csrf_token }}
+              <div class="btn-group">
+                <button type="button" class="btn btn-default " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Mudar Senha<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <form method="POST">
+                    <div class="hidden">
+                      ID do usuário:
+                        {{ uf.form_id(placeholder = x.id, value = x.id) }}
+                    </div>
+                    <div class="list-group-item">
+                    Insira a nova senha: {{ uf.nova_senha }}
+                    <p></p>
+                    Repita a nova senha: {{ uf.nova_senha2 }}
+                    <p></p>
+                    <button class="btn btn-xs btn-primary btn-block" type="submit">Atualizar</button>
+                    </div>
+                  </form>
+                </ul>
+              </div>
+        </form>
+      </h3>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}
